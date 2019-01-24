@@ -1,6 +1,5 @@
 package com.xiaoniu.permissionutil.request;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -20,20 +19,9 @@ public class PermissionRequestFragment extends Fragment {
     private final static int REQUEST_PERMISSION = 100;
 
     private PermissionRequest permissionRequest;
-    private boolean onAttachRequestPer = false;
 
     public PermissionRequestFragment() {
 
-    }
-
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (onAttachRequestPer){
-            requestPermission();
-            onAttachRequestPer = false;
-        }
     }
 
     /**
@@ -52,13 +40,7 @@ public class PermissionRequestFragment extends Fragment {
     public void requestPermission(@NonNull PermissionRequest permissionRequest){
         Log.d(TAG, "requestPermission");
         this.permissionRequest = permissionRequest;
-        if (getActivity() == null){
-            onAttachRequestPer = true;
-            return;
-        }else {
-            onAttachRequestPer = false;
-            requestPermission();
-        }
+        requestPermission();
     }
 
     private void requestPermission(){

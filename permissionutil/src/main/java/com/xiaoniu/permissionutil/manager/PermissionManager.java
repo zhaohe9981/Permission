@@ -50,6 +50,7 @@ public class PermissionManager {
             if (currentFragment == null){
                 currentFragment = PermissionRequestFragment.newInstance();
                 fm.beginTransaction().add(currentFragment, FRAGMENT_TAG).commitAllowingStateLoss();
+                fm.executePendingTransactions();//立刻执行
             }
             currentFragment.requestPermission(permissionRequest);
         }
